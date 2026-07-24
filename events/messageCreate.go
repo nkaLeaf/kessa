@@ -29,3 +29,7 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 	}
 
 }
+func init() {
+
+	handlers.EventMap["messageCreate"] = messageCreate
+}

@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	_ "kessa/events"
 	"kessa/handlers"
 	"os"
 	"os/signal"
@@ -17,8 +18,9 @@ func main() {
 	dg, err := discordgo.New("Bot " + cfg.Token)
 	handlers.Catch("session create", "fatal", err)
 
-	//	dg.AddHandler()
-	dg.Identify.Intents = discordgo.IntentGuildMessages
+	dg.Identify.Intents = discordgo.IntentGuildMessages | discordgo.IntentMessageContent
+
+	handlers.LoadEvents(dg)
 
 	err = dg.Open()
 	handlers.Catch("session open", "fatal", err)
