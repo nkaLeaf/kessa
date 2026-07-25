@@ -3,7 +3,7 @@ package handlers
 import (
 	"log"
 )
-
+//the loggeer is a bit ass im gonna change it soon with more modular logging
 func Catch(s string, t string, err error) {
 	if err != nil {
 		switch t {

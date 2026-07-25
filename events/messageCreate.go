@@ -16,11 +16,8 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 	msg, nan := strings.CutPrefix(m.Content, handlers.Cfg.Prefix)
 	switch nan {
 	case true:
-		if msg == "kurwa" {
-			s.ChannelMessageSend(m.ChannelID, "kurwa")
-		}
-		if msg == "nacho" {
-			s.ChannelMessageSend(m.ChannelID, "bronacho")
+		if cmd, ok := handlers.CommandMap[msg]; ok {
+			cmd.Run(s, m)
 		}
 	case false:
 		return
@@ -28,6 +25,5 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 
 }
 func init() {
-
 	handlers.EventMap["messageCreate"] = messageCreate
 }

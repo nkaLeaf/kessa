@@ -12,6 +12,5 @@ func ready(s *discordgo.Session, m *discordgo.Ready) {
 	fmt.Println("im up bro")
 }
 func init() {
-
 	handlers.EventMap["ready"] = ready
 }
