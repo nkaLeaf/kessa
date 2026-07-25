@@ -18,8 +18,11 @@ type Command struct {
 var CommandMap = make(map[string]*Command)
 
 func LoadCommands() {
-	for name := range CommandMap {
+	for name, cmd := range CommandMap {
+		// Register aliases
+		for _, alias := range cmd.Aliases {
+			CommandMap[alias] = cmd
+		}
 		fmt.Println("command " + name + " has loaded")
-
 	}
 }

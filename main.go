@@ -1,6 +1,7 @@
 package main
 
 import (
+	_ "kessa/commands/dev"
 	_ "kessa/events"
 	"kessa/handlers"
 	"os"
