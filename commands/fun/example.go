@@ -1,0 +1,23 @@
+package commands
+
+import (
+	"kessa/handlers"
+	"time"
+
+	"github.com/bwmarrin/discordgo"
+)
+
+func run(s *discordgo.Session, m *discordgo.MessageCreate) {
+
+	s.ChannelMessageSend(m.ChannelID, "example")
+
+}
+func init() {
+	handlers.CommandMap["ex"] = &handlers.Command{
+		Name:        "ex",
+		Aliases:     []string{"x"},
+		Description: "example",
+		Cooldown:    2 * time.Second,
+		Run:         run,
+	}
+}

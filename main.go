@@ -1,7 +1,6 @@
 package main
 
 import (
-	_ "kessa/commands/dev"
 	_ "kessa/events"
 	"kessa/handlers"
 	"os"
@@ -20,7 +19,7 @@ func main() {
 
 	handlers.LoadEvents(dg)
 	handlers.LoadCommands()
-	
+
 	err = dg.Open()
 	handlers.Catch("session open", "fatal", err)
 
