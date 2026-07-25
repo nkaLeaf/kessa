@@ -8,14 +8,12 @@ import (
 )
 
 func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
-	cfg, err := handlers.LoadConf()
-	handlers.Catch("config load", "fatal", err)
 
 	if m.Author.ID == s.State.User.ID {
 		return
 	}
 
-	msg, nan := strings.CutPrefix(m.Content, cfg.Prefix)
+	msg, nan := strings.CutPrefix(m.Content, handlers.Cfg.Prefix)
 	switch nan {
 	case true:
 		if msg == "kurwa" {

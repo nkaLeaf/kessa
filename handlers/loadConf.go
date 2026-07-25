@@ -11,10 +11,12 @@ type Conf struct {
 	Prefix string `json:"prefix"`
 }
 
+var Cfg Conf
+
 func LoadConf() (Conf, error) {
-	var cfg Conf
+
 	data, err := os.ReadFile("conf.json")
 	Catch("config read", "fatal", err)
-	err = json.Unmarshal(data, &cfg)
-	return cfg, err
+	err = json.Unmarshal(data, &Cfg)
+	return Cfg, err
 }
