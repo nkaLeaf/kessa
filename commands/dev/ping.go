@@ -9,7 +9,7 @@ import (
 
 func run(s *discordgo.Session, m *discordgo.MessageCreate) {
 
-	s.ChannelMessageSend(m.ChannelID, "WebSocket Ping: "+s.HeartbeatLatency().Round(time.Millisecond).String()+"ms")
+	s.ChannelMessageSend(m.ChannelID, "WebSocket Ping: "+s.HeartbeatLatency().Round(time.Millisecond).String())
 
 }
 func init() {
