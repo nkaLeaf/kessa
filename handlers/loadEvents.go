@@ -1,16 +1,15 @@
 package handlers
 
 import (
-	"fmt"
-
 	"github.com/bwmarrin/discordgo"
+	"github.com/sirupsen/logrus"
 )
 
 var EventMap = make(map[string]interface{})
 
 func LoadEvents(dg *discordgo.Session) {
 	for name, event := range EventMap {
-		fmt.Println("event " + name + " has loaded")
+		Info("Event: "+name+" has loaded", logrus.InfoLevel)
 		dg.AddHandler(event)
 	}
 

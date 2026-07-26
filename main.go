@@ -9,12 +9,13 @@ import (
 	"syscall"
 
 	"github.com/bwmarrin/discordgo"
+	"github.com/sirupsen/logrus"
 )
 
 func main() {
 
 	dg, err := discordgo.New("Bot " + handlers.Cfg.Token)
-	handlers.Catch("session create", "fatal", err)
+	handlers.Logger("session create", logrus.FatalLevel, err)
 
 	dg.Identify.Intents = discordgo.IntentGuildMessages | discordgo.IntentMessageContent
 
@@ -22,7 +23,8 @@ func main() {
 	handlers.LoadCommands()
 
 	err = dg.Open()
-	handlers.Catch("session open", "fatal", err)
+	handlers.Info("session open", logrus.InfoLevel)
+	handlers.Logger("session couldnt open", logrus.FatalLevel, err)
 
 	sc := make(chan os.Signal, 1)
 	signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM, os.Interrupt)
