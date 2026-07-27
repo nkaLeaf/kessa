@@ -4,7 +4,6 @@ import (
 	"time"
 
 	"github.com/bwmarrin/discordgo"
-	"github.com/sirupsen/logrus"
 )
 
 type Command struct {
@@ -19,6 +18,6 @@ var CommandMap = make(map[string]*Command)
 
 func LoadCommands() {
 	for name := range CommandMap {
-		Info("Command: "+name+" has loaded", logrus.InfoLevel)
+		Info("Command: " + name + " has loaded")
 	}
 }

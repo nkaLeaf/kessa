@@ -1,12 +1,12 @@
 package main
 
 import (
+	"bufio"
 	_ "kessa/commands"
 	_ "kessa/events"
 	"kessa/handlers"
 	"os"
-	"os/signal"
-	"syscall"
+	"strings"
 
 	"github.com/bwmarrin/discordgo"
 	"github.com/sirupsen/logrus"
@@ -23,11 +23,23 @@ func main() {
 	handlers.LoadCommands()
 
 	err = dg.Open()
-	handlers.Info("session open", logrus.InfoLevel)
+	handlers.Info("session open")
 	handlers.Logger("session couldnt open", logrus.FatalLevel, err)
 
-	sc := make(chan os.Signal, 1)
-	signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM, os.Interrupt)
-	<-sc
-	dg.Close()
+	reader := bufio.NewReader(os.Stdin)
+	for {
+		input, err := reader.ReadString('\n')
+		handlers.Logger("couldnt read command line", logrus.WarnLevel, err)
+
+		input = strings.TrimSpace(input)
+
+		switch input {
+		case "exit":
+			dg.Close()
+			os.Exit(0)
+		default:
+			handlers.Info("unknown code broski")
+			continue
+		}
+	}
 }

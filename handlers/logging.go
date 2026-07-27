@@ -35,7 +35,7 @@ func Logger(msg string, level logrus.Level, err error) {
 	}
 
 }
-func Info(msg string, level logrus.Level) {
+func Info(msg string) {
 
-	logger.Log(level, msg)
+	logger.Log(logrus.InfoLevel, msg)
 }
