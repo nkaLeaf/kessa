@@ -19,8 +19,8 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 	switch nan {
 	case true:
 		if cmd, ok := handlers.CommandMap[msg]; ok {
+			handlers.Logger(cmd.Name, logrus.DebugLevel, errors.New(" named command ran"))
 			cmd.Run(s, m)
-			handlers.Logger(cmd.Name+" named command ran", logrus.DebugLevel, errors.New("duh"))
 		}
 	case false:
 		return

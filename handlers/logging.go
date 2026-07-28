@@ -1,13 +1,15 @@
 package handlers
 
 import (
-	logrus "github.com/sirupsen/logrus"
+	"os"
+
+	"github.com/sirupsen/logrus"
 )
 
-var logger = logrus.New()
+var log = logrus.New()
 
 func init() {
-	logger.Formatter = &logrus.TextFormatter{
+	log.Formatter = &logrus.TextFormatter{
 		TimestampFormat:        "01-02 15:04:05",
 		ForceColors:            true,
 		DisableColors:          false,
@@ -15,6 +17,7 @@ func init() {
 		DisableSorting:         false,
 		DisableLevelTruncation: true,
 	}
+	log.SetLevel(logrus.DebugLevel)
 }
 
 func Logger(msg string, level logrus.Level, err error) {
@@ -30,12 +33,13 @@ func Logger(msg string, level logrus.Level, err error) {
 		case logrus.DebugLevel:
 			logMsg = msg + err.Error()
 		}
-
-		logger.Log(level, logMsg)
+		log.Log(level, logMsg)
+		if level == logrus.FatalLevel {
+			os.Exit(1)
+		}
 	}
 
 }
 func Info(msg string) {
-
-	logger.Log(logrus.InfoLevel, msg)
+	log.Log(logrus.InfoLevel, msg)
 }

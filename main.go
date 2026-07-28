@@ -21,6 +21,7 @@ func main() {
 
 	handlers.LoadEvents(dg)
 	handlers.LoadCommands()
+	handlers.Db("create","mich",10)
 
 	err = dg.Open()
 	handlers.Info("session open")
@@ -35,6 +36,7 @@ func main() {
 
 		switch input {
 		case "exit":
+			handlers.Info("exiting bot")
 			dg.Close()
 			os.Exit(0)
 		default:
