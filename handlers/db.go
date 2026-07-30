@@ -8,23 +8,24 @@ import (
 
 type User struct {
 	gorm.Model
-	ID       uint   `gorm:"primaryKey"` // Use uint for auto-incrementing IDs
+	ID       uint   `gorm:"primaryKey"`
 	Name     string `gorm:"size:255"`
 	Currency int
 }
 
-func Db(action string, context string, count int) {
+func OpenDB() {
 	db, err := gorm.Open(sqlite.Open("db.db"), &gorm.Config{})
 	Logger("couldnt open db", logrus.FatalLevel, err)
 
 	err = db.AutoMigrate(&User{})
 	Logger("couldnt migrate db", logrus.FatalLevel, err)
 
-	switch action {
-	case "create":
-		user := User{ID: 1, Name: context, Currency: count}
-		result := db.Create(&user)
-		Logger("couldnt create user", logrus.ErrorLevel, result.Error)
-	}
-	//half done db TODO
+	//	user := User{ID: 2, Name: "kıyma", Currency: 100}
+	//	result := db.Create(&user)
+	//	Logger("couldn't create user", logrus.ErrorLevel, result.Error)
+
+	//	var findUser User
+	//	db.Find(&findUser) // or db.First(&findUser, 1)
+
+	//Info(fmt.Sprintf("%+v", findUser)) // Convert User to string first
 }

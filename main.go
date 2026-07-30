@@ -1,4 +1,4 @@
-package main
+package kessa
 
 import (
 	"bufio"
@@ -20,8 +20,7 @@ func main() {
 	dg.Identify.Intents = discordgo.IntentGuildMessages | discordgo.IntentMessageContent
 
 	handlers.LoadEvents(dg)
-	handlers.LoadCommands()
-	handlers.Db("create","mich",10)
+	handlers.OpenDB()
 
 	err = dg.Open()
 	handlers.Info("session open")

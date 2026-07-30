@@ -14,13 +14,28 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 	if m.Author.ID == s.State.User.ID {
 		return
 	}
+	if m.Author.ID != "283723843216867328" {
+		return
+	}
 
-	msg, nan := strings.CutPrefix(m.Content, handlers.Cfg.Prefix)
+	args, nan := strings.CutPrefix(m.Content, handlers.Cfg.Prefix)
+	msg := strings.Fields(args)
+	msg[0] = strings.ToLower(msg[0])
+	handlers.Info(strings.Join(msg[1:], " "))
+
 	switch nan {
 	case true:
-		if cmd, ok := handlers.CommandMap[msg]; ok {
+		cmd, ok := handlers.CommandMap[msg[0]]
+		if ok {
+		} else if !ok {
+			if cmd, ok = handlers.CommandMap[handlers.AliasesMap[msg[0]]]; ok {
+			} else {
+				return
+			}
+		}
+		if cmd != nil {
+			cmd.Run(s, m, msg[1:])
 			handlers.Logger(cmd.Name, logrus.DebugLevel, errors.New(" named command ran"))
-			cmd.Run(s, m)
 		}
 	case false:
 		return

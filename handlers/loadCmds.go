@@ -11,13 +11,20 @@ type Command struct {
 	Aliases     []string
 	Description string
 	Cooldown    time.Duration
-	Run         func(*discordgo.Session, *discordgo.MessageCreate)
+	Run         func(*discordgo.Session, *discordgo.MessageCreate, []string)
 }
 
 var CommandMap = make(map[string]*Command)
+var AliasesMap = make(map[string]string)
 
-func LoadCommands() {
-	for name := range CommandMap {
-		Info("Command: " + name + " has loaded")
+func LoadCommands(cmd *Command) {
+	CommandMap[cmd.Name] = cmd
+	if cmd.Aliases == nil {
+		return
 	}
+	for _, alias := range cmd.Aliases {
+		AliasesMap[alias] = cmd.Name
+	}
+	Info("Command: " + cmd.Name + " has loaded")
+
 }
