@@ -28,7 +28,7 @@ This README will grow alongside the bot.
 
 ### Tech stack
  
-- **Language:** Go (language)
+- **Language:** Go
 - **discord lib:** [discordgo](https://github.com/bwmarrin/discordgo)
 - **ORM:** [GORM](https://gorm.io/) (SQL database)
 
