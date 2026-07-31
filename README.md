@@ -13,11 +13,15 @@ This README will grow alongside the bot.
 ## Features 
 
 - Progression & Prestige — level up, then prestige through 4 tiers (plus uncapped cosmetic prestige beyond that) for permanent XP bonuses and higher hunter-upgrade caps. Moons, stardust, items, and cosmetics always carry over — prestiging resets levels, not your collection.
+
 - Hunter Upgrades — invest in Stamina, Efficiency, Negotiation, Goggles, and Auto-Filter to shape how scavenging works for you.
+
 - SharkBot (Auto-Scavenger) — send it off to passively collect pets over time, then come back and claim your haul. Timestamp-based, no background jobs.
 
 - Pets — a large roster of collectible pets across 12 rarity tiers, each with its own passive kit (triggers + effects) that gets more complex at higher tiers. Team up to 3 for battle, with randomized stat rolls on first pull.
+
 - Turn-based Battles - physical / mage / true damage types, pet-specific resistances, speed-based turn order, crits and status effects.
+
 - Weapons & Charms — give your pets weapons (with real tradeoffs, not all upside) and wear charms yourself to boost scavenging, chat XP or battle XP.
 
 - Chests & Market — open tiered chests for charms and items, or trade with other players on a global P2P marketplace.
