@@ -2,7 +2,9 @@
 
 
 
-Kessa is a Discord bot built on [discordgo](https://github.com/bwmarrin/discordgo) — a modernized, opinionated take on the OwO Bot–style pet-collecting/progression loop, with its own systems layered on top: turn-based pet battles, prestige progression, an auto-scavenger, a player market, and more. > **Status: early / active development.** Core systems are being built incrementally and numbers, mechanics, and schemas are still subject to change. This README will grow alongside the bot.
+Kessa is a Discord bot built on [discordgo](https://github.com/bwmarrin/discordgo) — a modernized, opinionated take on the OwO Bot–style pet-collecting/progression loop, with its own systems layered on top: turn-based pet battles, prestige progression, an auto-scavenger, a player market, and more. 
+> **Status: early / active development.** Core systems are being built incrementally and numbers, mechanics, and schemas are still subject to change. 
+This README will grow alongside the bot.
 
 
 
@@ -28,16 +30,7 @@ Kessa is a Discord bot built on [discordgo](https://github.com/bwmarrin/discordg
  
 - **Language:** Go (language)
 - **discord lib:** [discordgo](https://github.com/bwmarrin/discordgo)
-- **ORM:** [GORM](https://gorm.io/) (SQL database - schema grows feature by feature rather than being fully fixed upfront)# 1. Introduction## Prerequisites 
- 
- - [Go](https://go.dev/dl/) (recent stable version) 
- - A SQL database supported by GORM (e.g. PostgreSQL, MySQL, or SQLite) 
- - A [Discord bot application](https://discord.com/developers/applications) and its bot token ### Installation ```bash git clone https://github.com/<your-org>/kessa.git cd kessa go mod download ``` #### Config
- 
-Copy the example config, and fill in your values:
-```bash cp conf.example.json conf.json ``` `conf.json` currently expects at minimum: ```json { "token": "your-discord-bot-token", "prefix": "!" } ```
-
-More config (such as embed colors) will be added as those features land - check `conf.example.json` for latest expected fields.
+- **ORM:** [GORM](https://gorm.io/) (SQL database)
 
 ## Contributing 
  
